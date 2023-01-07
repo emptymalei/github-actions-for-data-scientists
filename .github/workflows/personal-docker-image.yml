@@ -6,6 +6,7 @@ on:
       - 'main'
     paths:
       - 'personalized-docker-image/*'
+      - '.github/workflows/personal-docker-image.yml'
   workflow_dispatch:
     inputs:
       name:
