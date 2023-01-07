@@ -45,7 +45,12 @@ def test_regenerate_get_raw_html_of_table(artefact_base_path):
             {"len": 973, "first": f"{TABLE_PAGE_BASE_URL}/ndxe202212.html"},
             "artefact_base_path",
         ),
-        ("raw_html.binary", 10, {"len": 10, "first": f"{TABLE_PAGE_BASE_URL}/ndxe202212.html"}, "artefact_base_path"),
+        (
+            "raw_html.binary",
+            10,
+            {"len": 10, "first": f"{TABLE_PAGE_BASE_URL}/ndxe202212.html"},
+            "artefact_base_path",
+        ),
     ],
     ids=["top_unset", "top_10"],
     indirect=["artefact_base_path"],
@@ -62,7 +67,13 @@ def test_extract_links(artefact_file, top, expected, artefact_base_path):
 
 @pytest.mark.parametrize(
     "artefact_file, expected, artefact_base_path",
-    [("raw_html_ndxe.binary", {"len": 1, "first_shape": (376, 9)}, "artefact_base_path")],
+    [
+        (
+            "raw_html_ndxe.binary",
+            {"len": 1, "first_shape": (376, 9)},
+            "artefact_base_path",
+        )
+    ],
     ids=[
         "raw_html_ndxe",
     ],
