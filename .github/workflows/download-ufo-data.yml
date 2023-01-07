@@ -40,5 +40,4 @@ jobs:
       - name: Push changes to repo
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
           branch: main
