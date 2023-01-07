@@ -1,0 +1,41 @@
+name: Download from NUFORC
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron:  '0 7 * * 1'
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: data_scriping
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: 1.1.14
+      - name: Install
+        run: poetry install
+      - name: Download
+        run: poetry run ufo --top=6 --target="../dataset/nuforc_ufo_records.csv"
+      - name: Update Data using Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git status
+          git add .
+          git commit -m "Update Datasets" || echo "Nothing to update"
+          git status
+      - name: Push changes to repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          branch: main
