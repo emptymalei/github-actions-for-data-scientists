@@ -33,5 +33,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./personalized-docker-image
+          file: ./personalized-docker-image/Dockerfile
           push: true
           tags: user/app:latest
