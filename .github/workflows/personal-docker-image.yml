@@ -32,7 +32,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./personalized-docker-image
-          file: ./personalized-docker-image/Dockerfile
+          context: "{{defaultContext}}:personalized-docker-image"
           push: true
           tags: user/app:latest
