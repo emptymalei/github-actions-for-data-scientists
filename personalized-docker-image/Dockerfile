@@ -21,15 +21,14 @@ RUN python3 -m venv $POETRY_VENV \
 # Add `poetry` to PATH
 ENV PATH="${PATH}:${POETRY_VENV}/bin"
 
-WORKDIR /app
-
 RUN git clone --depth=1 https://github.com/pyenv/pyenv.git .pyenv
 ENV PYENV_ROOT="${HOME}/.pyenv"
 ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
+RUN echo ‘export PATH="/root/.pyenv/bin:PATH"'>> /root/.bashrc &&\ echo 'eval "(pyenv init -)"’>> /root/.bashrc
 
 ENV PYTHON_VERSION=3.10.9
-RUN pyenv install ${PYTHON_VERSION}
-RUN pyenv global ${PYTHON_VERSION}
+RUN /bin/bash -c 'source $HOME/.bashrc; pyenv install ${PYTHON_VERSION}'
+RUN /bin/bash -c 'source $HOME/.bashrc; pyenv global ${PYTHON_VERSION}'
 
 # Install dependencies
 COPY poetry.lock pyproject.toml ./
