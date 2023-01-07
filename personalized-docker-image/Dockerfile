@@ -26,7 +26,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -y --no-install-recommends && 
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
     LC_ALL=en_US.UTF-8 \
-    CONDARC=/opt/conda/.condarc \
     BASH_ENV=/etc/profile \
     PATH=/opt/conda/bin:$PATH \
     CIVIS_MINICONDA_VERSION=4.5.12 \
@@ -77,7 +76,6 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 
 # Install boto in the base environment for private s3 channel support.
 # Install Python Packages
-COPY .condarc /opt/conda/.condarc
 COPY environment.yml environment.yml
 RUN conda install -y boto && \
     conda install -y nomkl && \
