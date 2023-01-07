@@ -34,4 +34,4 @@ jobs:
         with:
           context: "{{defaultContext}}:personalized-docker-image"
           push: true
-          tags: user/app:latest
+          tags: emptymalei/datascience-base:latest
