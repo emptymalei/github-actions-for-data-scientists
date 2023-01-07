@@ -1,0 +1,38 @@
+name: Build LaTeX Resume
+
+on:
+  push:
+    paths:
+      - 'automate-latex-resume/*'
+  workflow_dispatch:
+    inputs:
+      whotriggered:
+        description: 'Manually Build Resume'
+        default: 'Just want to build it'
+        required: false
+
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          latexmk_use_xelatex: true
+          pre_compile: |
+            tlmgr update --self
+            tlmgr install fontawesome
+          working_directory: automate-latex-resume
+          root_file: mmayer.tex
+      - name: Collect PDF
+        run: |
+          echo "Copy mmayer.pdf to publish folder"
+          cp automate-latex-resume/mmayer.pdf publish/mmayer.pdf
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: publish # The folder the action should deploy.
