@@ -6,6 +6,12 @@ on:
       - 'main'
     paths:
       - 'personalized-docker-image/*'
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Build Now'
+        required: false
+        default: 'I just wanna build it now'
 
 jobs:
   docker:
