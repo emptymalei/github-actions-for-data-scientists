@@ -3,7 +3,10 @@ name: Download from NUFORC
 on:
   push:
     branches:
-      - master
+      - main
+    paths:
+      - 'data_scriping/*'
+      - '.github/workflows/download-ufo-data.yml'
   schedule:
     - cron:  '0 7 * * 1'
 
