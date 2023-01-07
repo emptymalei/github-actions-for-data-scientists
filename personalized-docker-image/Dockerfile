@@ -30,9 +30,11 @@ ENV PYTHON_VERSION=3.10.9
 RUN /bin/bash -c 'source $HOME/.bashrc; pyenv install ${PYTHON_VERSION}'
 RUN /bin/bash -c 'source $HOME/.bashrc; pyenv global ${PYTHON_VERSION}'
 
+WORKDIR /datascience
+
 # Install dependencies
 COPY poetry.lock pyproject.toml ./
 RUN poetry install
 
 EXPOSE 8888
-CMD [ "jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root" ]
+CMD [ "poetry", "run" "jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root" ]
