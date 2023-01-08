@@ -3,6 +3,18 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'docs/*'
+      - 'mkdocs.yml'
+      - 'requirements.docs.txt'
+      - '.github/workflows/docs-publish.yaml'
+  workflow_dispatch:
+    inputs:
+      whotriggered:
+        description: 'Manually Build Docs'
+        default: 'Just want to build it'
+        required: false
+
 
 jobs:
   deploy:
