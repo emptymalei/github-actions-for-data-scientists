@@ -31,6 +31,7 @@ jobs:
       - name: Collect PDF
         run: |
           echo "Copy mmayer.pdf to publish folder"
+          mkdir -p publish
           cp automate-latex-resume/mmayer.pdf publish/mmayer.pdf
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
