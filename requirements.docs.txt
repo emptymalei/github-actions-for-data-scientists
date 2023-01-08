@@ -1,0 +1,7 @@
+ipykernel==6.19.4
+matplotlib==3.6.2
+mkdocs-autorefs==0.4.1
+mkdocs-jupyter==0.22.0
+mkdocs-material==8.5.11
+mkdocstrings-python==0.8.3
+mkdocstrings[python]==0.19.1

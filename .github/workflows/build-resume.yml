@@ -33,8 +33,28 @@ jobs:
           echo "Copy mmayer.pdf to publish folder"
           mkdir -p publish
           cp automate-latex-resume/mmayer.pdf publish/mmayer.pdf
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+          mkdir -p docs/assets/files
+          cp automate-latex-resume/mmayer.pdf docs/assets/files/mmayer.pdf
+      - name: Update Data using Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git status
+          git add docs/assets/files/mmayer.pdf
+          git commit -m "Update Resume" || echo "Nothing to update"
+          git status
+      - name: Push changes to repo
+        uses: ad-m/github-push-action@master
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: publish # The folder the action should deploy.
+          branch: main
+
+      # The following step is publishing the pdf to gh-pages
+      # so that one could use a url to access the pdf.
+      # we disabled it because we use this action together
+      # with mkdocs to generate a website.
+      #
+      # - name: Deploy 🚀
+      #   uses: JamesIves/github-pages-deploy-action@4.1.4
+      #   with:
+      #     branch: gh-pages # The branch the action should deploy to.
+      #     folder: publish # The folder the action should deploy.
