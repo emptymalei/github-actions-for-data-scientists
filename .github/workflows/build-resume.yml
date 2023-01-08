@@ -21,7 +21,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          latexmk_use_xelatex: true
+          # latexmk_use_xelatex: true
           pre_compile: |
             tlmgr update --self
             tlmgr install fontawesome
