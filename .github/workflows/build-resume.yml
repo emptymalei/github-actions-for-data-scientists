@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'automate-latex-resume/*'
+      - '.github/workflows/build-resume.yml'
   workflow_dispatch:
     inputs:
       whotriggered:
