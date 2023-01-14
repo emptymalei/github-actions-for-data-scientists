@@ -6,7 +6,6 @@ on:
       - main
       - gh-pages
 
-
 jobs:
   print_something:
     runs-on: ubuntu-latest
