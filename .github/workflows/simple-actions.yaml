@@ -1,0 +1,16 @@
+name: "A Minimal GitHub Actions Workflow"
+
+on:
+  push:
+    branches:
+      - main
+      - gh-pages
+
+
+jobs:
+  print_something:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Echo: good"
+        run: |
+          echo "good"
