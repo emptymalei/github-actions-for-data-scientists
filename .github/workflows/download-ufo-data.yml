@@ -8,7 +8,7 @@ on:
       - 'data_scriping/*'
       - '.github/workflows/download-ufo-data.yml'
   schedule:
-    - cron:  '0 7 * * 1'
+    - cron: '0 7 * * 1'
 
 jobs:
   download:
